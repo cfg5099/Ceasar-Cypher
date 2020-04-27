@@ -42,18 +42,22 @@ def encrypt(phrase, key):
 
 def decrypt(phrase, key):
 	for x in range(0, len(phrase)):
+		keyP = 26 - key
 		charNum  = ord(phrase[x])
 
 		#if upper case
 		if(charNum >= 65 and charNum <= 90):
-			num = charNum - key - 122
-			
-			if(num < 0):
-				num = num * -1;
+			num = charNum + keyP
 
-			newchar = chr(num % 26 + 64)
-			print(newchar)
+			if (int(num) >= 90):
+				num = num % 90
+				newchar = chr(num + 64)
+
+			else:
+				newchar = chr(num)
+				print(newchar)
 			phrase[x] = newchar
+
 
 		#if lower case
 		if(charNum >= 97 and charNum <=122):
