@@ -10,8 +10,19 @@ if(key > 25):
 
 for x in range(0, len(phrase)):
 	charNum  = ord(phrase[x])
-	newchar = chr(charNum + key)
-	phrase[x] = newchar
+	#if upper case
+	if(charNum >= 65 and charNum <= 90):
+		newchar = chr((charNum + key - 65) % 26 + 65)
+		phrase[x] = newchar
+
+	#if lower case
+	if(charNum >= 97 and charNum <=122):
+		# math = (charNum + key) % 122 + 96
+		# print(math)
+		newchar = chr((charNum + key - 97) % 26 + 97)
+		phrase[x] = newchar
+
+	# phrase[x] = newchar
 	pass
 
 newPhrase = "".join(phrase)
